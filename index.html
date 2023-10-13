@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh_CN" data-theme-mode="light" data-light-theme="daylight" data-dark-theme="midnight">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" id="baseStyle" href="stage/build/export/base.css?2.10.8"/>
+    <link rel="stylesheet" type="text/css" id="themeDefaultStyle" href="appearance/themes/daylight/theme.css?2.10.8"/>
+    
+    <title>C:\Users\15072\Desktop\新建文件夹\wxx_note - 思源笔记  v2.10.8</title>
+    <style>
+        body {background-color: var(--b3-theme-background);color: var(--b3-theme-on-background)}
+        .b3-typography, .protyle-wysiwyg, .protyle-title {font-size:16px !important}
+.b3-typography code:not(.hljs), .protyle-wysiwyg span[data-type~=code] { font-variant-ligatures: none }
+.li > .protyle-action {height:34px;line-height: 34px}
+.protyle-wysiwyg [data-node-id].li > .protyle-action ~ .h1, .protyle-wysiwyg [data-node-id].li > .protyle-action ~ .h2, .protyle-wysiwyg [data-node-id].li > .protyle-action ~ .h3, .protyle-wysiwyg [data-node-id].li > .protyle-action ~ .h4, .protyle-wysiwyg [data-node-id].li > .protyle-action ~ .h5, .protyle-wysiwyg [data-node-id].li > .protyle-action ~ .h6 {line-height:34px;}
+.protyle-wysiwyg [data-node-id].li > .protyle-action:after {height: 16px;width: 16px;margin:-8px 0 0 -8px}
+.protyle-wysiwyg [data-node-id].li > .protyle-action svg {height: 14px}
+.protyle-wysiwyg [data-node-id].li:before {height: calc(100% - 34px);top:34px}
+.protyle-wysiwyg [data-node-id] [spellcheck] {min-height:26px;}
+.protyle-wysiwyg [data-node-id] {}
+.protyle-wysiwyg .li {min-height:34px}
+.protyle-gutters button svg {height:26px}
+.protyle-wysiwyg img.emoji, .b3-typography img.emoji {width:18px}
+.protyle-wysiwyg .h1 img.emoji, .b3-typography h1 img.emoji {width:35px}
+.protyle-wysiwyg .h2 img.emoji, .b3-typography h2 img.emoji {width:31px}
+.protyle-wysiwyg .h3 img.emoji, .b3-typography h3 img.emoji {width:27px}
+.protyle-wysiwyg .h4 img.emoji, .b3-typography h4 img.emoji {width:25px}
+.protyle-wysiwyg .h5 img.emoji, .b3-typography h5 img.emoji {width:22px}
+.protyle-wysiwyg .h6 img.emoji, .b3-typography h6 img.emoji {width:20px}
+    </style>
+</head>
+<body>
+<div class="b3-typography" style="max-width: 800px;margin: 0 auto;" id="preview"><h1 id="20231013190956-5nnphcd" updated="20231013190956">wxx_note</h1>
+<h1 id="20231013190956-lhqw6i0" updated="20231013190956">Aboat major</h1>
+<h2 id="20231013190956-jnxjs3s" updated="20231013190956">multivalued dependencies</h2>
+<ul id="20231013190956-thaaijs" updated="20231013190956">
+<li id="20231013190956-30oi808" updated="20231013190956">
+<p id="20231013190956-rolbglr" updated="20231013190956">多值依赖的意义</p>
+</li>
+<li id="20231013190956-pogovp4" updated="20231013190956">
+<p id="20231013190956-lcmscex" updated="20231013190956">多值依赖与函数依赖的区别</p>
+</li>
+<li id="20231013190956-k6u4gpb" updated="20231013190956">
+<p id="20231013190956-jh1hhpf" updated="20231013190956">多值依赖的定义</p>
+</li>
+<li id="20231013190956-94ff439" updated="20231013190956">
+<p id="20231013190956-nzj2b7w" updated="20231013190956">多值依赖性质的证明(使用 temple 证明)</p>
+<p id="20231013190956-hb63tds" updated="20231013190956">传递性</p>
+<p id="20231013190956-vtify6i" updated="20231013190956">函数依赖可以看作是多值依赖的特殊情况</p>
+<p id="20231013190956-8xcm8z3" updated="20231013190956">并规则</p>
+<p id="20231013190956-br02xgr" updated="20231013190956">分解规则</p>
+</li>
+</ul>
+<h3 id="20231013190956-k77yp51" updated="20231013190956"><span data-type="strong">传递性</span></h3>
+<p id="20231013190956-eut2ytu" updated="20231013190956"> 若 X→→Y，Y→→Z，则 X→→Z-Y。</p>
+<p id="20231013190956-twjz92w" updated="20231013190956">证明该性质时，其存在两种特殊情况：</p>
+<p id="20231013190956-q9pap5e" updated="20231013190956">① 在 X∩[Y∪Z]=Ø 时，设存在 U 的子集 X，Y，Z，K(X,Y,Z,K∈U)，其中 K=U-X-Y-Z。存在元组 S，T 属于关系 r(S,T∈r)且 S[X]=T[X],并将 YZ 元组分解 Y= (Y-Z)∪(Y∩Z)，Z= (Z-Y)∪(Y∩Z)，则有如表 1.3.3 下列元组</p>
+<table id="20231013190956-o0ynbk0" updated="20231013190956">
+<thead>
+<tr>
+<th></th>
+<th>X</th>
+<th>Y-Z</th>
+<th>Y∩Z</th>
+<th>Z-Y</th>
+<th>K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>S[X]</td>
+<td>S[Y-Z]</td>
+<td>S[Y∩Z]</td>
+<td>S[Z-Y]</td>
+<td>S[K]</td>
+</tr>
+<tr>
+<td>T</td>
+<td>T[X]</td>
+<td>T[Y-Z]</td>
+<td>T[Y∩Z]</td>
+<td>T[Z-Y]</td>
+<td>T[K]</td>
+</tr>
+</tbody>
+</table>
+<p id="20231013190956-poic14w" updated="20231013190956">表 1.3.3</p>
+<p id="20231013190956-7cun0fn" updated="20231013190956">由 X→→Y 可得，w，v 元组属于关系 r(W,V∈r)，则如表 1.3.4 下列元组</p>
+<table id="20231013190956-v5t52bw" updated="20231013190956">
+<thead>
+<tr>
+<th></th>
+<th>X</th>
+<th>Y-Z</th>
+<th>Y∩Z</th>
+<th>Z-Y</th>
+<th>K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W</td>
+<td>W[X]</td>
+<td>S[Y-Z]</td>
+<td>S[Y∩Z]</td>
+<td>T[Z-Y]</td>
+<td>T[K]</td>
+</tr>
+<tr>
+<td>V</td>
+<td>V[X]</td>
+<td>T[Y-Z]</td>
+<td>T[Y∩Z]</td>
+<td>S[Z-Y]</td>
+<td>S[K]</td>
+</tr>
+</tbody>
+</table>
+<p id="20231013190956-9hvhwfh" updated="20231013190956">表 1.3.4</p>
+<p id="20231013190956-jmq9oue" updated="20231013190956">其中 W[X]=V[X]=S[X]=T[X]。将现有 S,T,W,V 作为已知条件进行变换。</p>
+<p id="20231013190956-it5e9z4" updated="20231013190956">若需要求得 X→→Z-Y 成立，则根据多值依赖的元组定义则需要证明以下元组 W'，V'满足 W'，V'属于关系 r(W',V'∈r)，即如表 1.3.5 下列元组</p>
+<table id="20231013190956-llczftg" updated="20231013190956">
+<thead>
+<tr>
+<th></th>
+<th>X</th>
+<th>Y-Z</th>
+<th>Y∩Z</th>
+<th>Z-Y</th>
+<th>K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W'</td>
+<td>S[X]</td>
+<td>T[Y-Z]</td>
+<td>T[Y∩Z]</td>
+<td>S[Z-Y]</td>
+<td>T[K]</td>
+</tr>
+<tr>
+<td>V'</td>
+<td>T[X]</td>
+<td>S[Y-Z]</td>
+<td>S[Y∩Z]</td>
+<td>T[Z-Y]</td>
+<td>S[K]</td>
+</tr>
+</tbody>
+</table>
+<p id="20231013190956-80y2lpt" updated="20231013190956">表 1.3.5</p>
+<p id="20231013190956-awspl7g" updated="20231013190956">现对 S，W 元组由 Y→→Z 可得 W<span data-type="sub">1 </span><span data-type="sub sub">,V</span><span data-type="sub">1</span> 元组，其中 Y= (Y-Z)∪(Y∩Z)，则有如表 1.3.6 下列元组</p>
+<table id="20231013190956-rsg40lr" updated="20231013190956">
+<thead>
+<tr>
+<th></th>
+<th>X</th>
+<th>Y-Z</th>
+<th>Y∩Z</th>
+<th>Z-Y</th>
+<th>K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W<span data-type="sub">1</span></td>
+<td>S[X]</td>
+<td>S[Y-Z]</td>
+<td>S[Y∩Z]</td>
+<td>S[Z-Y]</td>
+<td>T[K]</td>
+</tr>
+<tr>
+<td>V<span data-type="sub">1</span></td>
+<td>S[X]</td>
+<td>S[Y-Z]</td>
+<td>S[Y∩Z]</td>
+<td>T[Z-Y]</td>
+<td>S[K]</td>
+</tr>
+</tbody>
+</table>
+<p id="20231013190956-tx70jne" updated="20231013190956">表 1.3.6</p>
+<p id="20231013190956-8uqk8r0" updated="20231013190956">同理，对 T，V 元组由 Y→→Z 可得 W<span data-type="sub">2 </span><span data-type="sub sub">,V</span><span data-type="sub">2</span> 元组，其中 Y= (Y-Z)∪(Y∩Z) ，则有如表 1.3.7 下列元组</p>
+<table id="20231013190956-3jwh6i3" updated="20231013190956">
+<thead>
+<tr>
+<th></th>
+<th>X</th>
+<th>Y-Z</th>
+<th>Y∩Z</th>
+<th>Z-Y</th>
+<th>K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W<span data-type="sub">2</span></td>
+<td>T[X]</td>
+<td>T[Y-Z]</td>
+<td>T[Y∩Z]</td>
+<td>T[Z-Y]</td>
+<td>S[K]</td>
+</tr>
+<tr>
+<td>V<span data-type="sub">2</span></td>
+<td>T[X]</td>
+<td>T[Y-Z]</td>
+<td>T[Y∩Z]</td>
+<td>S[Z-Y]</td>
+<td>T[K]</td>
+</tr>
+</tbody>
+</table>
+<p id="20231013190956-orc9xvr" updated="20231013190956">表 1.3.7</p>
+<p id="20231013190956-igksy0g" updated="20231013190956">又有 S[X]= T[X]，则可知 W'=V<span data-type="sub">2</span>，V'=V<span data-type="sub">1</span>，即 X→→Z-Y。</p>
+<p id="20231013190956-wsj2r9l" updated="20231013190956">②.在一般情况下，需要考虑元组 X 与元组 Y∪Z 的关系。设存在 U 的子集 X，Y，Z，K(X,Y,Z,K∈U)，其中 K=U-X-Y-Z，存在元组 S，T 属于关系 r(S,T∈r)且 S[X]=T[X]。现将 Y∪Z 分解：Y∪Z= [Y-Z]∪[Y∩Z]∪[Z-Y]，则需将元组 X 分解：X=X<span data-type="sub">0</span>∪X<span data-type="sub">1</span>∪X<span data-type="sub">2</span>∪X<span data-type="sub">3</span>，其中 X<span data-type="sub">1</span>=X∩(Y-Z),X<span data-type="sub">2</span>=X∩[Y∩Z],X<span data-type="sub">3</span>=X∩[Z-Y],X<span data-type="sub">0</span>=X-X<span data-type="sub">1</span>-X<span data-type="sub">2</span>-X<span data-type="sub">3</span>，即 X<span data-type="sub">0</span>，X<span data-type="sub">1</span>，X<span data-type="sub">2</span>，X<span data-type="sub">3</span> 两两互不相交。则有如表 1.3.8 下列元组</p>
+<table id="20231013190956-wuyhns3" updated="20231013190956">
+<thead>
+<tr>
+<th></th>
+<th>X<span data-type="sub">0</span></th>
+<th>X<span data-type="sub">1</span></th>
+<th>X<span data-type="sub">2</span></th>
+<th>X<span data-type="sub">3</span></th>
+<th>Y-Z-X<span data-type="sub">1</span></th>
+<th>Y∩Z-X<span data-type="sub">2</span></th>
+<th>Z-Y-X<span data-type="sub">3­</span></th>
+<th>K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>S[X<span data-type="sub">0</span>]</td>
+<td>S[X<span data-type="sub">1</span>]</td>
+<td>S[X<span data-type="sub">2</span>]</td>
+<td>S[X<span data-type="sub">3</span>]</td>
+<td>S[Y-Z-X<span data-type="sub">1</span>]</td>
+<td>S[Y∩Z-X<span data-type="sub">2</span>]</td>
+<td>S[Z-Y-X<span data-type="sub">3­</span>]</td>
+<td>S[K]</td>
+</tr>
+<tr>
+<td>T</td>
+<td>T[X<span data-type="sub">0</span>]</td>
+<td>T[X<span data-type="sub">1</span>]</td>
+<td>T[X<span data-type="sub">2</span>]</td>
+<td>T[X<span data-type="sub">3</span>]</td>
+<td>T[Y-Z-X<span data-type="sub">1</span>]</td>
+<td>T[Y∩Z-X<span data-type="sub">2</span>]</td>
+<td>T[Z-Y-X<span data-type="sub">3­</span>]</td>
+<td>T[K]</td>
+</tr>
+</tbody>
+</table>
+<p id="20231013190956-ac9oopa" updated="20231013190956">表 1.3.8</p>
+<p id="20231013190956-qgwkz1t" updated="20231013190956">其中有 X→→Y 元组定义可得 S[X<span data-type="sub">i</span>] =T[X<span data-type="sub">i</span>] (i=1,2,3)，和新元组 W，V。则有如表 1.3.9 下列元组</p>
+<table id="20231013190956-chttjsu" updated="20231013190956">
+<thead>
+<tr>
+<th></th>
+<th>X<span data-type="sub">0</span></th>
+<th>X<span data-type="sub">1</span></th>
+<th>X<span data-type="sub">2</span></th>
+<th>X<span data-type="sub">3</span></th>
+<th>Y-Z-X<span data-type="sub">1</span></th>
+<th>Y∩Z-X<span data-type="sub">2</span></th>
+<th>Z-Y-X<span data-type="sub">3­</span></th>
+<th>K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W</td>
+<td>W[X<span data-type="sub">0</span>]</td>
+<td>S[X<span data-type="sub">1</span>]</td>
+<td>W[X<span data-type="sub">2</span>]</td>
+<td>W[X<span data-type="sub">3</span>]</td>
+<td>W[Y-Z-X<span data-type="sub">1</span>]</td>
+<td>W[Y∩Z-X<span data-type="sub">2</span>]</td>
+<td>W[Z-Y-X<span data-type="sub">3­</span>]</td>
+<td>W[K]</td>
+</tr>
+<tr>
+<td>V</td>
+<td>V[X<span data-type="sub">0</span>]</td>
+<td>V[X<span data-type="sub">1</span>]</td>
+<td>V[X<span data-type="sub">2</span>]</td>
+<td>T[X<span data-type="sub">3</span>]</td>
+<td>V[Y-Z-X<span data-type="sub">1</span>]</td>
+<td>V[Y∩Z-X<span data-type="sub">2</span>]</td>
+<td>V[Z-Y-X<span data-type="sub">3­</span>]</td>
+<td>V[K]</td>
+</tr>
+</tbody>
+</table>
+<p id="20231013190956-vrtkmb7" updated="20231013190956">表 1.3.9</p>
+<p id="20231013190956-f4wahb2" updated="20231013190956">通过对比特殊情况与一般情况，则可发现在 Y→→Z 运用的过程中发生交换的元组分别为 Y-Z-X<span data-type="sub">1</span>, Y∩Z-X<span data-type="sub">2</span>, Z-Y-X<span data-type="sub">3</span>, K。即在一般情况下，通过 Y→→Z，(S,W)，(T,V)得到的新元组(W<span data-type="sub">1</span>,V<span data-type="sub">1</span>)，(W<span data-type="sub">2</span>,V<span data-type="sub">2</span>)其中(V<span data-type="sub">2</span>, V<span data-type="sub">1</span>)与所需要得到的 X→→Z-Y 的元组(W',V')相同。</p>
+<p id="20231013190956-c82zp5v" updated="20231013190956">即在一般情况下，若 X→→Y，Y→→Z，则 X→→Z-Y 成立。</p>
+<p id="20231013190956-csx7tbm" updated="20231013190956"><a href="assets/王壮_multivalued dependencies_whpu-20231013121646-6kctkqh.pdf">王壮_multivalued dependencies_whpu.pdf</a></p>
+<h2 id="20231013190956-9mrzf8w" updated="20231013190956">Intelligent algorithms</h2>
+<p id="20231013190956-lunu738" updated="20231013190956"><a href="assets/王壮_Intelligent algorithms_whpu-20231013121739-h3ngilg.pdf">王壮_Intelligent algorithms_whpu.pdf</a></p>
+<h1 id="20231013190956-2gav5wi" updated="20231013190956">Aboat algorithm</h1>
+<p id="20231013190956-722d9wu" updated="20231013190956">‍</p>
+<h2 id="20231013190956-tz3mu7n" updated="20231013190956">动态规划</h2>
+<h3 id="20231013190956-g0wiun9" updated="20231013190956">01 背包</h3>
+<pre class="code-block" data-language="cpp"><code class="hljs">#二维数组版
+const int w[1024],c[1024]
+int n,m;
+cin&gt;&gt;n&gt;&gt;m;
+for(int i=1;i&lt;=n;i++) cin&gt;&gt;w[i]&gt;&gt;c[i];
+for(int i=1;j&lt;=n;j++)//i是物品个数
+	for(int j=1;j&lt;=m;j++)//j是背包空间
+		if(j&lt;w[i]) dp[i][j]=dp[i-1][j];
+		eles dp[i][j]=max(dp[i-1][j],dp[i][j-w[i]]+c[i])
+cout&lt;&lt;dp[n][m];
+#一维数组版
+int n,m;cin&gt;&gt;n&gt;&gt;m;
+for(int i=1;i&lt;=n;i++){
+	int v,m;cin&gt;&gt;v&gt;&gt;m;
+	for(int j=m;j&gt;=v;j--) dp[j]=max(dp[j-1],dp[j-v]+m);
+}//从m最大值开始遍历且最小值大于物品体积是为保证能够加入物品
+cout&lt;&lt;dp[m];
+</code></pre>
+<ul id="20231013190956-jzkho6j" updated="20231013190956">
+<li id="20231013190956-hslo1wm" updated="20231013190956">
+<p id="20231013190956-6ngexsh" updated="20231013190956">逐渐添加元素入背包，然后求在每个容量下的最大值(利用<span data-type="text" style="background-color: var(--b3-font-background2);">动态转移</span>)</p>
+</li>
+<li id="20231013190956-e7doja8" updated="20231013190956">
+<p id="20231013190956-6y4lf7p" updated="20231013190956">在逐渐增加背包容量下，当容量小于添加元素的体积时，该状态下的最大值 v1 与该容量下未添加元素时的最大值 v2 相同，而在大于添加元素的体积时，该状态需判断<span data-type="text" style="background-color: var(--b3-font-background2);">添加新元素与剩余空间所对应的值之和 v3</span> 与<span data-type="text" style="background-color: var(--b3-font-background2);">未添加时的值 v1</span> 的大小，取最大值</p>
+</li>
+</ul>
+<p id="20231013190956-knuyrk3" updated="20231013190956"><a href="https://www.bilibili.com/video/BV1cg411g7Y6/">带你学透 0-1 背包问题！| 关于背包问题，你不清楚的地方，这里都讲了！| 动态规划经典问题 | 数据结构与算法_哔哩哔哩_bilibili</a></p>
+<h3 id="20231013190956-w5fkii0" updated="20231013190956">完全背包</h3>
+<ul id="20231013190956-f2eek7u" updated="20231013190956">
+<li id="20231013190956-lv597r0" updated="20231013190956">
+<p id="20231013190956-mezgif5" updated="20231013190956">最直接版完全背包</p>
+<pre class="code-block" data-language="cpp"><code class="hljs">int n,m; cin&gt;&gt;n&gt;&gt;m;
+for(int i=1;i&lt;=n;i++) cin&gt;&gt;w[i]&gt;&gt;c[i];
+for(int i=1;i&lt;=n;i++)
+	for(int j=1;j&lt;m;j++)
+		for(int k=0;k&lt;j/w[i];k++)
+			dp[j]=max(dp[j],dp[j-k*w[i]]+k*c[i]);
+cout&lt;&lt;dp[m];
+</code></pre></li>
+<li id="20231013190956-oevrjq5" updated="20231013190956">
+<p id="20231013190956-w24rwu8" updated="20231013190956">​​优化版二维完全背包​</p>
+<p id="20231013190956-7m13iei" updated="20231013190956">在完全背包问题中，物品可多项选择，及可以竖向转移—<span data-type="text" style="background-color: var(--b3-font-background2);">在未添加新物品时该容量下的值(01 背包问题原理)，和竖向转移—在添加新物品的情况加进行动态规划(及在 j-W[i]的背包大小所对应的值加上 C[i]值)</span>，然后取最大值。</p>
+<pre class="code-block" data-language="cpp"><code class="hljs">int n,m; cin&gt;&gt;n&gt;&gt;m;
+for(int i=1;i&lt;=n;i++) cin&gt;&gt;w[i]&gt;&gt;c[i];
+for(int i=1;i&lt;=n;i++)
+	for(int j=1;j&lt;m;j++){
+		dp[i][j]=dp[i-1][j];//竖向转移
+		if(j-w[i]&gt;=0)	dp[i][j]=max(dp[i][j],dp[i][j-w[i]]+c[i]);//横向转移
+}
+cout&lt;&lt;dp[n][m];
+</code></pre></li>
+<li id="20231013190956-eyrspu1" updated="20231013190956">
+<p id="20231013190956-lw3j9zv" updated="20231013190956">最简版完全背包问题</p>
+<pre class="code-block" data-language="cpp"><code class="hljs">int n,m; cin&gt;&gt;n&gt;&gt;m;
+for(int i=1;i&lt;=n;i++) cin&gt;&gt;w[i]&gt;&gt;c[i];
+for(int i=1;i&lt;=n;i++)
+	for(int j=w[i];j&lt;=m;j++){
+		dp[j]=max(dp[j],dp[j-w[i]]+c[i]);
+cout&lt;&lt;dp[m];
+</code></pre></li>
+</ul>
+<p id="20231013190956-e9ib0d8" updated="20231013190956"><a href="https://www.jianshu.com/p/0b9018bbacd7">背包九讲系列 1——01 背包、完全背包、多重背包 - 简书 (jianshu.com)</a></p>
+<h2 id="20231013190956-nimfqe4" updated="20231013190956">贪心算法</h2>
+<p id="20231013190956-5yu3ctf" updated="20231013190956">贪心算法，又名贪婪法，是寻找<span data-type="strong">最优解问题</span>的常用方法，这种方法模式一般将求解过程分成<span data-type="strong">若干个步骤</span>，但每个步骤都应用贪心原则，选取当前状态下<span data-type="strong">最好/最优的选择</span>（局部最有利的选择），并以此希望最后堆叠出的结果也是最好/最优的解。</p>
+<p id="20231013190956-nvwixgj" updated="20231013190956"><span data-type="strong">贪婪法的基本步骤：</span></p>
+<p id="20231013190956-z5ux24m" updated="20231013190956">步骤 1：从某个初始解出发；<br />
+步骤 2：采用迭代的过程，当可以向目标前进一步时，就根据局部最优策略，得到一部分解，缩小问题规模；<br />
+步骤 3：将所有解综合起来。</p>
+<h3 id="20231013190956-ngqq4ux" updated="20231013190956">最短路</h3>
+<p id="20231013190956-boh27zu" updated="20231013190956">​<span class="img"><img src="assets/net-img-20200411222316131-20231013003943-5o8ak8s.jpg" alt="" /></span>​</p>
+<p id="20231013190956-tbr48h8" updated="20231013190956"><a href="https://blog.csdn.net/wmy0217_/article/details/105438163">最短路算法总结（超详细~）-CSDN 博客</a></p>
+<h4 id="20231013190956-2mbg77g" updated="20231013190956">dijkstra</h4>
+<ul id="20231013190956-xnqq3ps" updated="20231013190956">
+<li id="20231013190956-xf6sx2l" updated="20231013190956">
+<p id="20231013190956-x0gs80r" updated="20231013190956">每次从未标记的节点中寻找距离出发点最近的节点，标记，收录到最优路径集合中</p>
+</li>
+<li id="20231013190956-3ci7o2c" updated="20231013190956">
+<p id="20231013190956-x4jtna0" updated="20231013190956">计算刚加入的节点 A 到相邻节点 B 的距离，不包括已标记的节点</p>
+</li>
+<li id="20231013190956-dpnddjf" updated="20231013190956">
+<p id="20231013190956-ejf7b89" updated="20231013190956">若 <span data-type="code">节点A到源点的距离</span>​ + <span data-type="code">节点A到节点B的边长</span>​ &lt; <span data-type="code">节点B到源点的距离</span>​，更新节点 B 到源点的值</p>
+</li>
+<li id="20231013190956-0twn1bs" updated="20231013190956">
+<p id="20231013190956-utcazvv" updated="20231013190956">重复以上步骤，直到未标记的节点未空时，停止算法</p>
+</li>
+</ul>
+<p id="20231013190956-mnlcmvv" updated="20231013190956"><a href="https://www.bilibili.com/video/BV1zz4y1m7Nq?vd_source=bc4fa866e16a93e8322d340eefe71de3">【算法】最短路径查找—Dijkstra 算法_哔哩哔哩_bilibili</a></p>
+<pre class="code-block" data-language="c++"><code class="hljs">void dijkstra(int dist[], bool st[], int grid[][N])
+{
+    dist[x] = 0;
+    for(int i = 1; i&lt;=n; i++)
+    {
+        int t = -1;//标记最小权值点
+        for(int j = 1; j&lt;=n; j++)//寻找最小权值点
+            if(st[j] == false &amp;&amp; (t == -1 || dist[j] &lt; dist[t]))
+                t = j;
+        st[t] = true;
+        for(int j = 1; j&lt;=n; j++)
+            dist[j] = min(dist[j], dist[t] + grid[t][j]);
+    }
+}
+</code></pre>
+<h4 id="20231013190956-159b56g" updated="20231013190956">bellman_ford</h4>
+<h5 id="20231013190956-dnw0a3c" updated="20231013190956">优点</h5>
+<ul id="20231013190956-4woxtk4" updated="20231013190956">
+<li id="20231013190956-2njl4gb" updated="20231013190956">
+<p id="20231013190956-aqt7b8d" updated="20231013190956">和 dijkstra 不同的是，BF 算法可以解决负环的最短路径问题，同时可以判断负环是否存在。</p>
+</li>
+<li id="20231013190956-9en480k" updated="20231013190956">
+<p id="20231013190956-lpk2c7u" updated="20231013190956">环：从某个顶点出发、经过若干个不同的顶点，可以回到该顶点的情况。</p>
+</li>
+<li id="20231013190956-my8hgre" updated="20231013190956">
+<p id="20231013190956-ivrsri5" updated="20231013190956">零环、正环、负环</p>
+</li>
+</ul>
+<h5 id="20231013190956-bm5tjcu" updated="20231013190956">思路</h5>
+<ol id="20231013190956-zapfqnr" updated="20231013190956">
+<li id="20231013190956-10a3u6a" updated="20231013190956">
+<p id="20231013190956-5758r9c" updated="20231013190956">初始化源点 s 到各个点 v 的路径 <span data-type="code">dis[v] = ∞，dis[s] = 0</span>​。</p>
+</li>
+<li id="20231013190956-r7x00sw" updated="20231013190956">
+<p id="20231013190956-e0xf46g" updated="20231013190956">进行 n - 1 次遍历，每次遍历对所有边进行松弛操作，满足则将权值更新。<br />
+松弛操作：以 a 为起点，b 为终点，ab 边长度为 w 为例。dis[a]代表源点 s 到 a 点的路径长度，dis[b]代表源点 s 到 b 点的路径长度。如果满足下面的式子则将 <span data-type="code">dis[b]</span> ​更新为 <span data-type="code">dis[a] + w</span>​。</p>
+<ul id="20231013190956-cusz8x6" updated="20231013190956">
+<li id="20231013190956-z6v2rja" updated="20231013190956">
+<p id="20231013190956-3qt342b" updated="20231013190956">​<span data-type="code">dis[b] &gt; dis[a] + w</span>​</p>
+</li>
+</ul>
+</li>
+<li id="20231013190956-ttemakt" updated="20231013190956">
+<p id="20231013190956-a8nue7w" updated="20231013190956">遍历都结束后，若再进行一次遍历，还能得到 s 到某些节点更短的路径的话，则说明存在负环路。</p>
+<p id="20231013190956-1niopii" updated="20231013190956">理由在于：对于给定 n 个节点的图，从 i 到 j，最短路径至多有 n-1 条路径，当出现 n 条路径时，说明在该条路径上至少存在一个环，也就是如果在进行一次遍历，如果节点的最短路径还能得到更新，那么只有环存在时，才会更新路径</p>
+</li>
+</ol>
+<pre class="code-block" data-language="cpp"><code class="hljs">struct edge{
+	int v, w;//v是出边，w是当前点到出边v的权值
+};
+
+vector&lt;edge&gt; e[maxn];
+int dis[maxn];
+const int inf = 0x3f3f3f3f;
+
+bool bellmanford(int s)
+{
+	memset(dis, 0x3f, sizeof(dis));
+	dis[s] = 0;
+	bool flag; // 判断一轮循环过程中是否发生松弛操作
+	for (int i = 1; i &lt;= n; i++)//至多遍历n-1次得到最短路径
+	{
+		flag = false;
+		for (int u = 1; u &lt;= n; u++)//依次遍历每一个点
+		{
+			if (dis[u] == inf)//当前点到源点还不存在路径时，不更新该点，理由如下
+				continue;// 无穷大与常数加减仍然为无穷大，因此最短路长度为 inf 的点引出的边不可能发生松弛操作
+			for (auto ed : e[u])//遍历当前点的所有邻边
+			{
+				int v = ed.v, w = ed.w;
+				if (dis[v] &gt; dis[u] + w)
+				{
+					dis[v] = dis[u] + w;
+					flag = true;//存在松弛操作，打上标记
+				}
+			}
+		}
+		if (!flag)// 没有可以松弛的边时就停止算法
+			break;
+	}
+	// 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个【负环】
+	return flag;
+}
+</code></pre>
+<h4 id="20231013190956-r0ginxi" updated="20231013190956">folyd</h4>
+<p id="20231013190956-elnco9v" updated="20231013190956">设定矩阵 <span data-type="inline-math" data-subtype="math" data-content="A_{n*n}" contenteditable="false" class="render-node"></span>，其中</p>
+<div data-content="a_{ij}=\left\{
+\begin{matrix}0,i=j
+ \\c_{i,j}, (i,j)\in E
+ \\ \infty , (i,j)\notin  E
+\end{matrix}\right." data-subtype="math"><div spin="1"></div></div>
+<p id="20231013190956-9cnbvf8" updated="20231013190956"><span data-type="strong">视频讲解：</span><a href="https://www.bilibili.com/video/BV1w54y1Q79E?spm_id_from=333.880.my_history.page.click&amp;vd_source=bc4fa866e16a93e8322d340eefe71de3">最短路径（二）Floyd 算法_哔哩哔哩_bilibili</a></p>
+<ul id="20231013190956-ws5zqt5" updated="20231013190956">
+<li id="20231013190956-ncjf2td" updated="20231013190956">
+<p id="20231013190956-i32kb0c" updated="20231013190956">解决图中任意点到某一点之间的最短路问题，例如 P 点到 M 点，中间可以直达也可以经过其他点到达</p>
+</li>
+</ul>
+<p id="20231013190956-r4rq698" updated="20231013190956">在视频中拓展：</p>
+<ul id="20231013190956-0pglu7g" updated="20231013190956">
+<li id="20231013190956-cuyb4nu" updated="20231013190956">
+<p id="20231013190956-yi7b0xu" updated="20231013190956"><span data-type="inline-math" data-subtype="math" data-content="A_{n*n}" contenteditable="false" class="render-node"></span> 矩阵依据公式 <span data-type="inline-math" data-subtype="math" data-content="a_{ij} = min(a_{ij},a_{ik} + a_{kj})" contenteditable="false" class="render-node"></span> 迭代 n 次后得到 i 到 j 的最短路径，但是得不到经过那些点，可以用一个额外的数组来记录经过的点，在视频讲解的末尾位置</p>
+</li>
+<li id="20231013190956-6ffv7uh" updated="20231013190956">
+<p id="20231013190956-wn17daj" updated="20231013190956"><span data-type="inline-math" data-subtype="math" data-content="A_{n*n}" contenteditable="false" class="render-node"></span> 矩阵依据公式 <span data-type="inline-math" data-subtype="math" data-content="a_{ij} = min(a_{ij},max(a_{ik}, a_{kj}))" contenteditable="false" class="render-node"></span> 可以得到 i 到 j 的所有通路集合中的通路的最大边的的最小值，就是在这一堆通路中，每条通路都有一条最大的边，在将这些边中的最小值取出</p>
+</li>
+</ul>
+<pre class="code-block" data-language="cpp"><code class="hljs">//针对无向图
+void floyd(){
+    //设k为中间节点，检查从i到j的距离和i到k，k到j（即以k作为中间节点绕行）的距离
+	for(int k=0; k&lt;n; k++){
+        for(int i = 0; i&lt;n; i++){
+            for(int j = 0; j&lt;n; j++){
+                grid[i][j] = grid[j][i] = min(grid[i][j], grid[i][k] + grid[k][j]);
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="20231013190956-s8x8owd" updated="20231013190956">最小生成树</h3>
+<h4 id="20231013190956-8om7415" updated="20231013190956">prim</h4>
+<p id="20231013190956-7uxvif9" updated="20231013190956">Prim （普里姆）算法是另一种常见并且好写的最小生成树算法。该算法的基本思想是从一个结点开始，不断加点（而不是 Kruskal 算法的加边）。具有贪心的思想。</p>
+<p id="20231013190956-u0qjuz1" updated="20231013190956">具体来说，每次要选择距离集合（已访问点集合）最小的一个结点，以及用新的边更新其他结点的距离。</p>
+<p id="20231013190956-fyd9vrl" updated="20231013190956">其实跟 Dijkstra 算法一样，每次找到距离最小的一个点，可以暴力找也可以用堆维护。</p>
+<p id="20231013190956-jm51swg" updated="20231013190956">堆优化的方式类似 Dijkstra 的堆优化，但如果使用二叉堆等不支持 decrease-key 的堆，复杂度就不优于 Kruskal，常数也比 Kruskal 大。所以，一般情况下都使用 Kruskal 算法，在稠密图尤其是完全图上，暴力 Prim 的复杂度比 Kruskal 优，但 <span data-type="strong">不一定</span> 实际跑得更快。</p>
+<p id="20231013190956-875gdh4" updated="20231013190956">时间复杂度：<span data-type="code">O(n^2)</span>​</p>
+<h5 id="20231013190956-0qmsefh" updated="20231013190956">流程</h5>
+<ul id="20231013190956-2dapnr3" updated="20231013190956">
+<li id="20231013190956-o7up4bf" updated="20231013190956">
+<p id="20231013190956-xzqky5s" updated="20231013190956">初始化：dist[N]为所有点到集合的距离，初始化为无穷大</p>
+</li>
+<li id="20231013190956-8bmekkt" updated="20231013190956">
+<p id="20231013190956-h42lwvz" updated="20231013190956">任选一个点，然后将该点加入最短路集合</p>
+</li>
+<li id="20231013190956-3svec1q" updated="20231013190956">
+<p id="20231013190956-zua6raf" updated="20231013190956">寻找距离到最短路集合最近的点，同时将该点加入最短路集合中</p>
+</li>
+<li id="20231013190956-9ru4rhz" updated="20231013190956">
+<p id="20231013190956-0z2ad22" updated="20231013190956">遍历该点的邻接点，更新邻接点到集合的距离 dist</p>
+</li>
+<li id="20231013190956-xf99aqg" updated="20231013190956">
+<p id="20231013190956-nsmjyky" updated="20231013190956">重复三四步骤，n 次循环，即遍历 n 个点，得到最小生成树</p>
+</li>
+</ul>
+<h5 id="20231013190956-f3kmsri" updated="20231013190956">思路</h5>
+<p id="20231013190956-fucof72" updated="20231013190956">在每一次选择一个点加入最小生成树集合中后，都会更新该点的所有邻接点到集合的距离，我们只要维护 dist 这个距离就可以得到答案，例如</p>
+<p id="20231013190956-0yrmmue" updated="20231013190956">第一次循环：在选取第一个点的时候，<span data-type="code">t = 0，vis[0]==true</span>​，更新了该点的所有邻接点到 0 点的距离</p>
+<p id="20231013190956-acyl6nx" updated="20231013190956">第二次循环：选取了到 0 点最近的一个点，加入最小生成树集合，更新该点的所有邻接点到该点的距离</p>
+<p id="20231013190956-ya67rzs" updated="20231013190956">重复 n 次循环，也就是 n 个点，值得注意的是，我们每次选取的都是这个集合的所有邻接点，而这些邻接点都被更新过了，因此是可以得到答案的。</p>
+<p id="20231013190956-ddbk2fi" updated="20231013190956">同时：还需要注意，如果在除开第一次选的点以外的点中，找到一个到集合距离无穷大的点，那么也就是说这个点是孤立点，一定是无法构成最小生成树的，即可返回 <span data-type="code">impossible</span>​</p>
+<pre class="code-block" data-language="cpp"><code class="hljs">int grid[N][N], n, m;
+int dist[N], vis[N];
+
+int prim(){
+    memset(dist, 0x3f, sizeof(dist));
+    int sum = 0;
+    for(int i = 0; i&lt;n; i++){
+        int t = -1;
+        for(int j = 1; j&lt;=n; j++){
+            if(!vis[j] &amp;&amp; (t == -1 || dist[t] &gt; dist[j]))
+                t = j;
+        }
+        vis[t] = true;
+        //如果该点非第一个点，但是该点到集合的距离是无穷大，也就是说该点是孤立出来的
+        if(i &amp;&amp; dist[t] == INF)
+            return INF;
+          
+        if(i)//该点非第一个点
+            sum += dist[t];
+      
+        for(int j = 1; j&lt;=n; j++)
+            dist[j] = min(dist[j], grid[t][j]);
+    }   
+    return sum;
+}
+</code></pre>
+<h4 id="20231013190956-oxiapf6" updated="20231013190956">kruskal</h4>
+<p id="20231013190956-hh5xdpf" updated="20231013190956">Kruskal （克鲁斯克尔）算法是一种常见并且好写的最小生成树算法，由 Kruskal 发明。该算法的基本思想是从小到大加入边，是个贪心算法。</p>
+<p id="20231013190956-5jnu904" updated="20231013190956">使用：并查集、图的存储、贪心</p>
+<p id="20231013190956-r3ckwhn" updated="20231013190956">例题：<a href="https://www.acwing.com/problem/content/description/4294/">4291. 丛林之路 - AcWing 题库</a></p>
+<p id="20231013190956-rest0ix" updated="20231013190956">时间复杂度：<span data-type="code">O(mlogm)</span>​（m 是边数）</p>
+<h5 id="20231013190956-e8vior4" updated="20231013190956">流程</h5>
+<ul id="20231013190956-8oxxn8r" updated="20231013190956">
+<li id="20231013190956-gxduw93" updated="20231013190956">
+<p id="20231013190956-0kv5own" updated="20231013190956">将所有边按权值从小到大排序，时间复杂度 <span data-type="code">O(mlogm)</span>​</p>
+</li>
+<li id="20231013190956-p9f4fnp" updated="20231013190956">
+<p id="20231013190956-odnqhf1" updated="20231013190956">依次遍历所有边，如果某边的两点不构成回路，即加入最短路径集合</p>
+</li>
+<li id="20231013190956-9yz03j6" updated="20231013190956">
+<p id="20231013190956-wqfls4f" updated="20231013190956">统计最短路径集合中的边个数，如果小于 n-1，即不构成最小生成树，等于 n-1，即可构成最小生成树</p>
+</li>
+</ul>
+<pre class="code-block" data-language="cpp"><code class="hljs">struct edge{
+    int a, b, w;//始点，终点，权
+}edges[M];
+int p[N], cnt;
+void add(int a, int b, int w){
+    edges[cnt].a = a, edges[cnt].b = b, edges[cnt].w = w, cnt++;
+}
+
+int find(int x){
+	if(p[x] != x)
+        p[x] = find(p[x]);
+	return p[x];
+}
+
+int kruskal(){
+    for(int i = 1; i&lt;=n; i++) p[i] = i;
+    sort(edges, edges + cnt);
+    int sum = 0, en = 0;//权值和，路径条数
+    for(int i = 0; i&lt;cnt; i++){
+		int a = edges[i].a, b = edges[i].b, w = edges[i].w;
+        int pa = find(a), pb = find(b);
+        if(pa != pb){
+            p[pa] = pb;
+            sum += w;
+            en++;
+        }
+    }
+    if(en &lt; n - 1){
+        cout &lt;&lt; &quot;无法构成最小生成树&quot;;
+        return -1;
+    }
+    return sum;
+}
+</code></pre></div>
+<script src="appearance/icons/Savor-icon/icon.js?2.10.8"></script>
+<script src="stage/build/export/protyle-method.js?2.10.8"></script>
+<script src="stage/protyle/js/lute/lute.min.js?2.10.8"></script>    
+<script>
+    window.siyuan = {
+      config: {
+        appearance: { mode: 0, codeBlockThemeDark: "base16/dracula", codeBlockThemeLight: "github" },
+        editor: { 
+          codeLineWrap: true,
+          codeLigatures: false,
+          plantUMLServePath: "https://www.plantuml.com/plantuml/svg/~1",
+          codeSyntaxHighlightLineNum: false,
+          katexMacros: JSON.stringify({}),
+        }
+      },
+      languages: {copy:"复制"}
+    };
+    const previewElement = document.getElementById('preview');
+    Protyle.highlightRender(previewElement, "stage/protyle");
+    Protyle.mathRender(previewElement, "stage/protyle", false);
+    Protyle.mermaidRender(previewElement, "stage/protyle");
+    Protyle.flowchartRender(previewElement, "stage/protyle");
+    Protyle.graphvizRender(previewElement, "stage/protyle");
+    Protyle.chartRender(previewElement, "stage/protyle");
+    Protyle.mindmapRender(previewElement, "stage/protyle");
+    Protyle.abcRender(previewElement, "stage/protyle");
+    Protyle.htmlRender(previewElement);
+    Protyle.plantumlRender(previewElement, "stage/protyle");
+    document.querySelectorAll(".protyle-action__copy").forEach((item) => {
+      item.addEventListener("click", (event) => {
+            navigator.clipboard.writeText(item.parentElement.nextElementSibling.textContent.trimEnd());
+            event.preventDefault();
+            event.stopPropagation();
+      })
+    });
+</script></body></html>
