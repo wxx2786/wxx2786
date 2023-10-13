@@ -94,7 +94,7 @@
 
 即在一般情况下，若 X→→Y，Y→→Z，则 X→→Z-Y 成立。
 
-[王壮_multivalued dependencies_whpu.pdf](assets/王壮_multivalued dependencies_whpu-20231013121646-6kctkqh.pdf)
+[王壮_multivalued dependencies_whpu.pdf](/assets/王壮_multivalued dependencies_whpu-20231013121646-6kctkqh.pdf)
 
 ## Intelligent algorithms
 
