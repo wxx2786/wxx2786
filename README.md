@@ -16,6 +16,10 @@
     <img width="800" src="https://github-readme-activity-graph.vercel.app/graph?username=wxx2786&theme=github-compact&hide_border=true&area=true&custom_title=Activity%20Graph" alt="Activity Graph" title="Activity Graph" />
 </p>
 <p align="center">
+    <!-- https://github.com/Ashutosh00710/github-readme-activity-graph -->
+    <img width="800" src="https://github-readme-stats.vercel.app/api/top-langs/?username=wxx2786&theme=transparent&hide_border=true&layout=donut-vertical&langs_count=6" />
+</p>
+<p align="center">
     <!-- https://github.com/ryo-ma/github-profile-trophy -->
     <!-- rules: https://github.com/ryo-ma/github-profile-trophy/blob/master/src/trophy.ts -->
     <img width="800" src="https://github-profile-trophy.vercel.app/?username=wxx2786&no-bg=true&no-frame=true&theme=algolia&title=-MultiLanguage" alt="Profile Trophy" title="Profile Trophy" />
