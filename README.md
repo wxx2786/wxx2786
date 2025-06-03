@@ -1,6 +1,6 @@
 ## Hi there 👋
-<img align="center" width="400" src="https://github-readme-stats.vercel.app/api?username={YOUR_USERNAME}&theme=transparent&include_all_commits=true&show_icons=true&hide_border=true" />
-<img align="center" src="https://github-readme-stats.vercel.app/api/wakatime?username={YOUR_USERNAME}&theme=transparent&hide_border=true&layout=compact&langs_count=22" />
+<img align="center" width="400" src="https://github-readme-stats.vercel.app/api?username={wxx2786}&theme=transparent&include_all_commits=true&show_icons=true&hide_border=true" />
+<img align="center" src="https://github-readme-stats.vercel.app/api/wakatime?username={wxx2786}&theme=transparent&hide_border=true&layout=compact&langs_count=22" />
 <!--
 **wxx2786/wxx2786** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
